@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./src:/opt/workdir/src
+      - ./pom.xml:/opt/workdir/pom.xml
+      - ./target:/opt/workdir/target
+
+  app-builder:
+    build:
+      context: .
+      target: build  # Use the Maven build stage
+    volumes:
+      - .:/opt/workdir
+      - maven-repo:/root/.m2
+    working_dir: /opt/workdir
+
+volumes:
+  maven-repo:
