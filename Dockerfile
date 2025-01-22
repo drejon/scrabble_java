@@ -6,7 +6,7 @@ WORKDIR /opt/workdir
 
 # Copy only the necessary files to resolve dependencies
 COPY . .
-RUN mvn dependency:resolve
+# RUN mvn dependency:resolve
 
 RUN mvn package -DskipTests
 
@@ -21,4 +21,5 @@ COPY --from=build /opt/workdir/target/*.jar app.jar
 EXPOSE 8080
 
 # Run the application
-CMD ["java", "src/main/java/App.java"]
+# CMD ["java", "src/main/java/Game.java"]
+CMD ["java", "-jar", "app.jar"]
