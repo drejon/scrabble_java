@@ -1,25 +1,19 @@
-# Use the official Maven image for building the application
-FROM maven:3.9.5-eclipse-temurin-17 AS build
+# Use official Gradle image (with OpenJDK pre-installed)
+FROM gradle:7.3-jdk17 as base
 
-# Set the working directory inside the container
+RUN apt-get update && apt-get install -y entr
+
+# Create an app directory inside the container
 WORKDIR /opt/workdir
 
-# Copy only the necessary files to resolve dependencies
-COPY . .
-# RUN mvn dependency:resolve
+# Copy Gradle files into the container
+COPY build.gradle /opt/workdir/
 
-RUN mvn package -DskipTests
+# Copy source code into the container
+COPY ./src /opt/workdir/src
 
-# Use a minimal runtime image to run the application
-FROM openjdk:17-jdk-slim
-WORKDIR /opt/workdir
+# Run Gradle to build the application
+RUN gradle build
 
-# Copy the built JAR file from the build stage
-COPY --from=build /opt/workdir/target/*.jar app.jar
-
-# Expose the application's port
-EXPOSE 8080
-
-# Run the application
-# CMD ["java", "src/main/java/Game.java"]
-CMD ["java", "-jar", "app.jar"]
+# Command to compile and run the Java app (Game class)
+CMD ["java", "-cp", "build/classes/java/main", "Game"]

@@ -1,22 +1,27 @@
+version: '3.8'
 services:
-  app:
+  scrabble:
     build:
       context: .
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./src:/opt/workdir/src
-      - ./pom.xml:/opt/workdir/pom.xml
-      - ./target:/opt/workdir/target
-
-  app-builder:
-    build:
-      context: .
-      target: build  # Use the Maven build stage
-    volumes:
-      - .:/opt/workdir
-      - maven-repo:/root/.m2
     working_dir: /opt/workdir
+    volumes:
+      - type: bind
+        source: .
+        target: /opt/workdir
+      - src_code:/opt/workdir/src
+    # command: java -cp build/classes/java/main Game
+
+  compiler-scrabble:
+    build:
+      context: .
+    working_dir: /opt/workdir
+    volumes:
+      - type: bind
+        source: .
+        target: /opt/workdir
+      - src_code:/opt/workdir/src
+    command: find . -name "*.java" | entr -r javac $(fnd . -name "*.java")
+
 
 volumes:
-  maven-repo:
+  src_code:

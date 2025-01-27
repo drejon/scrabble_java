@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // JUnit 5 dependencies for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    // Optional: JUnit Vintage to support older JUnit 4 tests
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.7.2'
+}
+
+test {
+    useJUnitPlatform()  // Ensure we're using JUnit 5
+}
