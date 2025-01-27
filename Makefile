@@ -1,8 +1,8 @@
 up:
-	# docker compose run --rm scrabble gradle clean build
-	# docker compose run --rm scrabble
+	docker compose run --rm scrabble gradle build --continuous
 
-	docker compose up
+run:
+	docker compose run --rm scrabble
 
 test:
 	docker compose run --rm app-builder mvn test -X

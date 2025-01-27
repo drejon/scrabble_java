@@ -16,8 +16,6 @@ public class Game {
         game.board = new Board(columns, rows);
 
         game.board.display();
-
-        // System.out.print("Hello world!");
     }
 
     public int getBoardTiles() {
