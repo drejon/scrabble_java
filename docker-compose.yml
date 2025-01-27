@@ -3,7 +3,6 @@ services:
   scrabble:
     build:
       context: .
-    working_dir: /opt/workdir
     volumes:
       - type: bind
         source: .
