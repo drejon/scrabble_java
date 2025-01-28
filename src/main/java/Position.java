@@ -14,7 +14,13 @@ public class Position {
 
         position.put("x", this.x);
         position.put("y", this.y);
-
+        
         return position;
     }
+
+    // public String toString() {
+        // return
+        // return this.getPosition().get('x');
+        // return "(" + this.x + ", " + this.y + ")";
+    // }
 }

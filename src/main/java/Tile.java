@@ -1,10 +1,10 @@
 public class Tile {
     
     char multiplier;
-    char character;
+    String character;
     Position position;
 
-    public Tile(char character, Position position) {
+    public Tile(String character, Position position) {
         this.position = position;
         this.character = character;
     }
@@ -13,11 +13,11 @@ public class Tile {
         this.multiplier = newMultiplier;
     }
 
-    public void setCharacter(char newChar) {
+    public void setCharacter(String newChar) {
         this.character = newChar;
     }
 
-    public char getCharacter() { 
+    public String getCharacter() { 
         return this.character;
      }
 
@@ -25,11 +25,11 @@ public class Tile {
         return this.multiplier;
      }
 
-    public Position getPosition() { 
+    public Position getPosition() {
         return this.position; 
     }
 
     public String toString() {
-        return character == ' ' ? "_" : String.valueOf(character);
+        return character == " " ? " _ " : String.valueOf(character);
     }
 }
