@@ -21,27 +21,24 @@ public class Board {
     }
 
     public void display() {
-
         System.out.println("Scrabble Board:");
 
         for (int row = 0; row < this.rows; row++) {
             for (int column = 0; column < this.columns; column++) {
                 int index = row * this.columns + column;
-                // System.out.print(tiles[index].getPosition());
-                Position position = tiles[index].getPosition();
-                HashMap<String, Integer> positionMap = position.getPosition();
-
-                for (String i: positionMap.keySet()) {
-                    System.out.println(i + " " + positionMap.get(i));
-                }
-
-                tiles[index].getPosition();
+                System.out.print(tiles[index]);
+                // Position position = tiles[index].getPosition();
+                // HashMap<String, Integer> positionMap = position.getPosition();
             }
-            // System.out.println();
+            System.out.println();
         }
     }
     
     public int getTilesNumber() {
         return this.columns * this.rows;
+    }
+
+    public Tile[] getTiles() {
+        return this.tiles;
     }
 }

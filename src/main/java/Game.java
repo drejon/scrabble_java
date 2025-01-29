@@ -13,12 +13,10 @@ public class Game {
         int rows = scanner.nextInt();
         
         Game game = new Game();
-        game.board = new Board(columns, rows);
+        Board board = new Board(columns, rows);
+        game.board = board;
 
+        Scaffolder scaffolder = new Scaffolder(board);
         game.board.display();
-    }
-
-    public int getBoardTiles() {
-        return this.board.getTilesNumber();
     }
 }
