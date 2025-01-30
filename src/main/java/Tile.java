@@ -30,6 +30,6 @@ public class Tile {
     }
 
     public String toString() {
-        return character == " " ? " _ " : String.valueOf(character);
+        return character.equals(" ") ? " _ " : String.valueOf(character);
     }
 }
