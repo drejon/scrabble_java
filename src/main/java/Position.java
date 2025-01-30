@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
 public class Position {
-    int x;
-    int y;
+    public int x;
+    public int y;
 
     public Position(int x, int y) {
         this.x = x;
@@ -18,9 +18,9 @@ public class Position {
         return position;
     }
 
-    // public String toString() {
+    public String toString() {
         // return
         // return this.getPosition().get('x');
-        // return "(" + this.x + ", " + this.y + ")";
-    // }
+        return "(" + this.x + ", " + this.y + ")";
+    }
 }
