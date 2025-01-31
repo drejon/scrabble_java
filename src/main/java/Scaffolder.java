@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Scaffolder {
     private Board board;
@@ -10,7 +11,8 @@ public class Scaffolder {
         this.tiles = this.board.getTiles();
         this.populateCross();
         this.populateCorners();
-        this.setDoubleChar();
+
+        IntStream.range(0, 5).forEach(i -> this.setDoubleChar());
     }
 
     private void populateCross() {
