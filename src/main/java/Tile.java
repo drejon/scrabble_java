@@ -1,6 +1,6 @@
 public class Tile {
     
-    char multiplier;
+    String multiplier;
     String character;
     Position position;
 
@@ -9,7 +9,7 @@ public class Tile {
         this.character = character;
     }
 
-    public void setMultiplier(char newMultiplier) {
+    public void setMultiplier(String newMultiplier) {
         this.multiplier = newMultiplier;
     }
 
@@ -21,7 +21,7 @@ public class Tile {
         return this.character;
      }
 
-    public char getMultiplier() { 
+    public String getMultiplier() { 
         return this.multiplier;
      }
 
@@ -30,6 +30,6 @@ public class Tile {
     }
 
     public String toString() {
-        return character.equals(" ") ? " _ " : String.valueOf(character);
+        return " ".equals(character) ? " _ " : (character == null ? " " : character);
     }
 }

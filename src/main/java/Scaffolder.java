@@ -17,35 +17,47 @@ public class Scaffolder {
         Position middle = this.board.getMiddlePosition();
         List<Position> offsetPositions = this.crossPositions();
         
-        this.board.setTile(middle.x, middle.y, 'p', " p ");
+        this.board.setTile(middle.x, middle.y, "p", " p ");
 
         for(Position offset: offsetPositions) {
-            this.board.setTile(middle.x + offset.x, middle.y + offset.y, 'p', " p ");
+            this.board.setTile(middle.x + offset.x, middle.y + offset.y, "p", " p ");
         }
     }
 
     private void setDoubleChar() {
         List<Tile> filteredTiles = this.filter();
-
         Position randomPosition = this.randomPosition(filteredTiles);
-        // System.out.println("Random: " + randomPosition.x + " " + randomPosition.y);
+        this.board.setTile(randomPosition.x, randomPosition.y, "l", " A ");
 
-        // for(Tile tile: filteredTiles) {
-        //     System.out.println("Tile position: " + tile.position.x + " " + tile.position.y);
-        // }
-        
-        this.board.setTile(randomPosition.x, randomPosition.y, 'l', " l ");
+        this.mirrorDoubleChar(randomPosition);
+    }
+
+    private void mirrorDoubleChar(Position position) {
+        Position middle = this.board.getMiddlePosition();
+
+        int xPositiveDistance = middle.x - position.x;
+        int yPositiveDistance = middle.y - position.y;
+
+        int xNegativeDistance = position.x - middle.x;
+        int yNegativeDistance = position.y - middle.y;
+
+        this.board.setTile(middle.x + xPositiveDistance, middle.y + yPositiveDistance, "l", " l ");
+        this.board.setTile(middle.x + xPositiveDistance, middle.y + yNegativeDistance, "l", " l ");
+        this.board.setTile(middle.x + xNegativeDistance, middle.y + yPositiveDistance, "l", " l ");
+        this.board.setTile(middle.x + xNegativeDistance, middle.y + yNegativeDistance, "l", " l ");
     }
 
     private List<Tile> filter() {
         List<Tile> emptyTiles = new ArrayList<Tile>();
 
         for(Tile tile: this.tiles) {
-            char tileMultiplier = tile.getMultiplier();
-            if (tileMultiplier == ' ') { emptyTiles.add(tile); }
+            String tileMultiplier = tile.getMultiplier();
+            boolean nullMultiplier = tileMultiplier == null;
+
+            if (nullMultiplier) { emptyTiles.add(tile); }
         }
 
-        System.out.println(emptyTiles.size());
+        // System.out.println(emptyTiles.size());
         return emptyTiles;
     }
 
@@ -77,7 +89,7 @@ public class Scaffolder {
         };
 
         for (Position position: positions) {
-            this.board.setTile(position.x, position.y, 'P', " P ");
+            this.board.setTile(position.x, position.y, "P", " P ");
         }
     }
 

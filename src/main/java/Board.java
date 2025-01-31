@@ -37,7 +37,7 @@ public class Board {
         return new Tile("NOT FOUND", new Position(0, 0));
     }
 
-    public void setTile(int x, int y, char multiplier, String character) {
+    public void setTile(int x, int y, String multiplier, String character) {
         Tile foundTile = this.search(x, y);
         
         foundTile.setMultiplier(multiplier);
