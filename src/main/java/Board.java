@@ -13,7 +13,7 @@ public class Board {
         this.rows = rows;
 
         this.tiles = new Tile[columns * rows];
-
+        
         for (int index = 0; index < this.tiles.length; index++) {
             int row = index / columns;
             int col = index % columns;
@@ -25,7 +25,7 @@ public class Board {
     private boolean matchPosition(Position a, Position b) {
         return a.x == b.x && a.y == b.y;
     }
-
+    
     private Tile search(int x, int y) {
         
         for(Tile tile: this.tiles) {
@@ -37,14 +37,14 @@ public class Board {
         return new Tile("NOT FOUND", new Position(0, 0));
     }
 
-    public void setTile(int x, int y, char multiplier, String character) {
+    public void setTile(int x, int y, String multiplier, String character) {
         Tile foundTile = this.search(x, y);
         
         foundTile.setMultiplier(multiplier);
         foundTile.setCharacter(character);
     }
 
-    private Position indexToPosition(int index) {
+    public Position indexToPosition(int index) {
         int x = index % this.columns;
         int y = index / this.columns;
 
